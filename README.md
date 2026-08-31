@@ -64,11 +64,13 @@ email — no server needed.
 
 Until the key is set, the form shows a small "not activated yet" warning.
 
-### 3. Set the site URL (after deploying)
+### 3. Site URL (only if you add a custom domain)
 
-In **`src/config.ts`**, set `SITE_URL` to the site's final address. This
-feeds canonical URLs, the sitemap, RSS, and structured data — it matters
-for SEO, so update it as soon as the real domain exists.
+The site is deployed at **<https://mimicreates.netlify.app>** and
+`SITE_URL` in `src/config.ts` already points there. If you later connect a
+custom domain (e.g. mimicreates.com) in Netlify, update `SITE_URL` to
+match — it feeds canonical URLs, the sitemap, RSS, and structured data, so
+it matters for SEO.
 
 ### 4. (Optional) Use the original branding images
 
@@ -106,17 +108,16 @@ stay hidden.
 ~150-character `description`, use `##` headings, and link to `/shop/` and
 `/custom-art/` where it feels natural.
 
-## 🚀 Deploying (free options)
+## 🚀 Deployment
 
-The build output (`dist/`) is plain static files. Any of these work on
-their free tier — connect the GitHub repo and they rebuild on every push:
+The site is live on Netlify: **<https://mimicreates.netlify.app>**
+(Netlify project `mimicreates`, config in `netlify.toml` — build command
+`npm run build`, publish directory `dist`).
 
-- **Cloudflare Pages** — build command `npm run build`, output `dist`
-- **Netlify** — same settings
-- **Vercel** — auto-detects Astro
-- **GitHub Pages** — via [Astro's official guide](https://docs.astro.build/en/guides/deploy/github/)
-
-After the first deploy, remember step 3 above (set `SITE_URL`).
+To publish updates automatically on every push, link the GitHub repo in
+the Netlify dashboard: *Project configuration → Build & deploy → Link
+repository*. Until then, deploys can be repeated from this repo with the
+Netlify CLI (`npx netlify deploy --prod`) or through Claude.
 
 ## Project layout
 

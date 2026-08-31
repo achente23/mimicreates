@@ -6,10 +6,10 @@
  * ─────────────────────────────────────────────────────────────────
  */
 
-/** The final domain of this website. Update this after you connect
- *  your real domain (it is used for canonical URLs, sitemap, RSS,
- *  and structured data — important for SEO). */
-export const SITE_URL = "https://mimicreates.pages.dev";
+/** The final domain of this website. Update this if you connect
+ *  a custom domain later (it is used for canonical URLs, sitemap,
+ *  RSS, and structured data — important for SEO). */
+export const SITE_URL = "https://mimicreates.netlify.app";
 
 export const SITE_NAME = "Mimi Creates";
 
