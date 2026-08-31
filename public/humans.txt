@@ -1,0 +1,10 @@
+/* TEAM */
+Artist & Founder: Mimi
+Shop: https://mimicreatesid.etsy.com
+
+/* SITE */
+Site: https://mimicreates.netlify.app
+Standards: HTML5, CSS3
+Software: Astro
+Made with love for little learners.
+Learn - Play - Create
