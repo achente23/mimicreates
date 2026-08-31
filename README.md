@@ -114,10 +114,21 @@ The site is live on Netlify: **<https://mimicreates.netlify.app>**
 (Netlify project `mimicreates`, config in `netlify.toml` — build command
 `npm run build`, publish directory `dist`).
 
-To publish updates automatically on every push, link the GitHub repo in
-the Netlify dashboard: *Project configuration → Build & deploy → Link
-repository*. Until then, deploys can be repeated from this repo with the
-Netlify CLI (`npx netlify deploy --prod`) or through Claude.
+**Auto-deploy** — pick ONE of these (each needs a single one-time step):
+
+- **Option A (recommended): link the repo in Netlify.** In the
+  [Netlify dashboard](https://app.netlify.com/projects/mimicreates) go to
+  *Project configuration → Build & deploy → Link repository* and pick
+  `achente23/mimicreates`. Netlify then builds and publishes on every
+  push (settings come from `netlify.toml`), plus you get deploy previews.
+  If you do this, delete `.github/workflows/deploy.yml` so pushes don't
+  deploy twice.
+- **Option B: GitHub Actions.** A ready workflow lives at
+  `.github/workflows/deploy.yml`. Activate it by creating a
+  [Netlify personal access token](https://app.netlify.com/user/applications#personal-access-tokens)
+  and adding it as a repository secret named `NETLIFY_AUTH_TOKEN` under
+  [Settings → Secrets → Actions](https://github.com/achente23/mimicreates/settings/secrets/actions).
+  Until the secret exists the workflow just skips (no red X).
 
 ## Project layout
 
