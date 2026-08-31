@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { products, CATEGORIES } from "../data/products";
+import { ETSY_SHOP_URL, SITE_NAME } from "../config";
+
+const title = "Shop Printables";
+const description =
+  "Browse Mimi Creates printables: busy books, worksheets, coloring pages and flashcards for toddlers and preschoolers. Instant digital downloads on Etsy.";
+
+/* Product + ItemList structured data so search engines and AI
+   assistants can list the products with prices. */
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${SITE_NAME} printable products`,
+    numberOfItems: products.length,
+    itemListElement: products.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: p.title,
+        description: p.description,
+        image: new URL(p.image, Astro.site).href,
+        url: new URL(`/shop/#${p.slug}`, Astro.site).href,
+        category: p.category,
+        brand: { "@type": "Brand", name: SITE_NAME },
+        offers: {
+          "@type": "Offer",
+          price: p.price.toFixed(2),
+          priceCurrency: p.currency,
+          availability: "https://schema.org/InStock",
+          url: p.etsyUrl,
+        },
+      },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: new URL("/", Astro.site).href },
+      { "@type": "ListItem", position: 2, name: "Shop", item: new URL("/shop/", Astro.site).href },
+    ],
+  },
+];
+---
+
+<BaseLayout {title} {description} {schema}>
+  <section class="section shop-hero text-center">
+    <div class="container">
+      <span class="kicker">Instant digital downloads</span>
+      <h1>Our Little Shop of Printables</h1>
+      <p class="lede">
+        Every item is a printable PDF you download right after purchase on
+        Etsy — print it at home as many times as you like. Tap
+        <strong>Buy&nbsp;Now</strong> to open the listing in our Etsy shop.
+      </p>
+    </div>
+  </section>
+
+  <section class="section shop-section" aria-label="Product listings">
+    <div class="container">
+      <div class="filter-bar" role="group" aria-label="Filter products by category">
+        <button class="filter-btn active" data-filter="all">All</button>
+        {
+          CATEGORIES.map((cat) => (
+            <button class="filter-btn" data-filter={cat}>
+              {cat}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="product-grid">
+        {products.map((product, i) => <ProductCard {product} eager={i < 3} />)}
+      </div>
+
+      <p class="shop-note sticker-border">
+        🧡 Can't find what you're looking for? We also take
+        <a href="/custom-art/">custom art requests</a> — or browse everything on
+        <a href={ETSY_SHOP_URL} target="_blank" rel="noopener">our Etsy shop ↗</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+  const cards = document.querySelectorAll<HTMLElement>(".product-card");
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => b.classList.toggle("active", b === btn));
+      const filter = btn.dataset.filter;
+      cards.forEach((card) => {
+        card.style.display =
+          filter === "all" || card.dataset.category === filter ? "" : "none";
+      });
+    });
+  });
+</script>
+
+<style>
+  .shop-hero {
+    padding-bottom: 1rem;
+  }
+  .lede {
+    max-width: 60ch;
+    margin-inline: auto;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .filter-btn {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--teal-dark);
+    background: #fff;
+    border: 2px solid var(--teal-soft);
+    border-radius: 999px;
+    padding: 0.45rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .filter-btn:hover {
+    border-color: var(--teal);
+  }
+  .filter-btn.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(46, 163, 155, 0.35);
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.6rem;
+  }
+  .shop-note {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 1.4rem 1.6rem;
+    background: var(--paper);
+    font-size: 1.02rem;
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+/**
+ * The Mimi Creates duckling mascot, recreated as an inline SVG from
+ * the brand stickers (yellow duckling, heart-print bonnet, teal bow).
+ * If you'd rather use the original artwork, drop the PNG into
+ * /public/images/mascot.png and replace this component with an <img>.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 260 300"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Mimi the duckling wearing a heart-patterned bonnet"
+>
+  <defs>
+    <path
+      id="bonnet-heart"
+      d="M0 4.2C-1.6 2.2-4.6.4-4.6-2 -4.6-3.9-3.2-5.2-1.6-5.2 -.6-5.2.4-4.6 0-3.6 .4-4.6 1.4-5.2 2.4-5.2 4-5.2 5.4-3.9 5.4-2 5.4.4 1.6 2.2 0 4.2Z"
+      fill="#fff"
+    ></path>
+  </defs>
+
+  <!-- feet -->
+  <g stroke="#8a5a28" stroke-width="4" stroke-linejoin="round">
+    <path
+      d="M124 250 L117 280 C123 276 127 276 131 280 C135 276 139 276 145 280 L142 250 Z"
+      fill="#f08a24"></path>
+    <path
+      d="M158 250 L151 280 C157 276 161 276 165 280 C169 276 173 276 179 280 L172 250 Z"
+      fill="#f08a24"></path>
+  </g>
+
+  <!-- body -->
+  <path
+    d="M114 148
+       C96 156 78 176 68 194
+       C74 196 82 196 88 194
+       C78 202 68 214 64 226
+       C74 228 84 224 92 218
+       C88 236 96 252 116 260
+       C140 270 176 266 192 246
+       C206 228 204 196 188 172
+       C178 156 156 144 138 144
+       Z"
+    fill="#f9e08e"
+    stroke="#8a5a28"
+    stroke-width="4"
+    stroke-linejoin="round"></path>
+
+  <!-- wing -->
+  <path
+    d="M116 196 C134 192 154 198 160 212 C154 228 128 232 112 222 C108 212 108 202 116 196 Z"
+    fill="#f3cf6b"
+    stroke="#8a5a28"
+    stroke-width="4"
+    stroke-linejoin="round"></path>
+
+  <!-- head -->
+  <circle
+    cx="152"
+    cy="100"
+    r="58"
+    fill="#f9e08e"
+    stroke="#8a5a28"
+    stroke-width="4"></circle>
+
+  <!-- bonnet -->
+  <path
+    d="M198 54
+       C172 28 118 30 96 64
+       C80 90 82 128 104 150
+       C110 156 120 161 127 159
+       C111 139 105 112 115 90
+       C126 65 160 50 198 54
+       Z"
+    fill="#6fbdb4"
+    stroke="#8a5a28"
+    stroke-width="4"
+    stroke-linejoin="round"></path>
+  <use href="#bonnet-heart" transform="translate(122 66) scale(1.1)"></use>
+  <use href="#bonnet-heart" transform="translate(100 96) scale(0.9)"></use>
+  <use href="#bonnet-heart" transform="translate(112 126) scale(0.8)"></use>
+  <use href="#bonnet-heart" transform="translate(150 48) scale(0.8)"></use>
+
+  <!-- beak (open) -->
+  <g stroke="#8a5a28" stroke-width="4" stroke-linejoin="round">
+    <path
+      d="M204 92 C220 84 238 88 244 98 C238 106 222 110 206 106 Z"
+      fill="#f08a24"></path>
+    <path
+      d="M206 106 C218 114 230 114 236 108 C232 120 214 124 204 114 Z"
+      fill="#e2761b"></path>
+  </g>
+
+  <!-- eye + blush -->
+  <circle cx="186" cy="90" r="7.5" fill="#2f2a26"></circle>
+  <circle cx="189" cy="87" r="2.6" fill="#fff"></circle>
+  <ellipse cx="198" cy="118" rx="9" ry="6" fill="#f5a994" opacity="0.85"
+  ></ellipse>
+
+  <!-- bow -->
+  <g stroke="#8a5a28" stroke-width="4" stroke-linejoin="round">
+    <path
+      d="M148 170 C128 152 102 156 100 172 C98 188 124 194 146 178 Z"
+      fill="#55b0a7"></path>
+    <path
+      d="M156 170 C176 152 202 156 204 172 C206 188 180 194 158 178 Z"
+      fill="#55b0a7"></path>
+    <path
+      d="M158 182 C170 198 176 214 164 232 L146 224 C156 208 150 196 144 186 Z"
+      fill="#55b0a7"></path>
+    <rect x="140" y="160" width="24" height="24" rx="9" fill="#3f9c93"></rect>
+  </g>
+  <use href="#bonnet-heart" transform="translate(158 210) scale(0.75)"></use>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "name": "mimicreates-website",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Mimi Creates — printable activities, busy books, worksheets & coloring books for little learners",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.4.1",
+    "astro": "^5.12.0"
+  }
+}

@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DuckMascot from "../components/DuckMascot.astro";
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="This page waddled off somewhere."
+  noindex
+>
+  <section class="section text-center">
+    <div class="container nf">
+      <DuckMascot class="nf-duck" />
+      <h1>Quack! Page not found</h1>
+      <p class="lede">
+        This page seems to have waddled off. Let's get you back to the fun
+        stuff.
+      </p>
+      <div class="nf-actions">
+        <a href="/" class="btn btn-primary">Back home</a>
+        <a href="/shop/" class="btn btn-outline">Browse printables</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    max-width: 520px;
+  }
+  :global(.nf-duck) {
+    width: 150px;
+    margin: 0 auto 1.4rem;
+  }
+  .lede {
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .nf-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin-top: 1.4rem;
+  }
+</style>

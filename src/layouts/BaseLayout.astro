@@ -1,0 +1,149 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import {
+  SITE_NAME,
+  SITE_DESCRIPTION,
+  ETSY_SHOP_URL,
+  CONTACT_EMAIL,
+  SOCIALS,
+} from "../config";
+import "../styles/global.css";
+
+interface Props {
+  /** Page title — shown as "<title> | Mimi Creates" */
+  title: string;
+  /** Meta description (~150 chars) — used by search engines & AI answers */
+  description?: string;
+  /** Absolute or root-relative path to the social share image */
+  ogImage?: string;
+  /** OpenGraph type: website (default) or article for blog posts */
+  ogType?: "website" | "article";
+  /** Set true to keep a page out of search engines */
+  noindex?: boolean;
+  /** Extra JSON-LD structured data objects for this page */
+  schema?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  ogImage = "/images/og-default.png",
+  ogType = "website",
+  noindex = false,
+  schema = [],
+} = Astro.props;
+
+const fullTitle =
+  title === SITE_NAME ? `${SITE_NAME} — ${"Learn · Play · Create"}` : `${title} | ${SITE_NAME}`;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(ogImage, Astro.site);
+
+/* Sitewide structured data: who we are + site search context.
+   This is what search engines AND AI assistants read to understand
+   the brand, so keep it accurate. */
+const baseSchema: Record<string, unknown>[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "OnlineStore",
+    "@id": new URL("/#organization", Astro.site).href,
+    name: SITE_NAME,
+    url: Astro.site?.href,
+    logo: new URL("/favicon.svg", Astro.site).href,
+    description: SITE_DESCRIPTION,
+    email: CONTACT_EMAIL,
+    slogan: "Learn · Play · Create",
+    sameAs: [ETSY_SHOP_URL, ...Object.values(SOCIALS).filter(Boolean)],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": new URL("/#website", Astro.site).href,
+    name: SITE_NAME,
+    url: Astro.site?.href,
+    description: SITE_DESCRIPTION,
+    publisher: { "@id": new URL("/#organization", Astro.site).href },
+    inLanguage: "en",
+  },
+];
+
+const jsonLd = [...baseSchema, ...schema];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#2ea39b" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${SITE_NAME} Blog`}
+      href={new URL("/rss.xml", Astro.site).href}
+    />
+
+    <!-- OpenGraph / social sharing -->
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImageUrl.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl.href} />
+
+    <!-- Fonts: Baloo 2 (display, matches the logo) + Nunito (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured data (SEO + AI SEO) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+      is:inline
+    />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--teal-dark);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 0 0 var(--radius-sm) 0;
+    z-index: 100;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
+</style>

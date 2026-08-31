@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DuckMascot from "../components/DuckMascot.astro";
+---
+
+<BaseLayout
+  title="Thank You!"
+  description="Your custom art request has been sent to Mimi Creates."
+  noindex
+>
+  <section class="section text-center">
+    <div class="container thanks">
+      <DuckMascot class="thanks-duck" />
+      <h1>Request received! 💌</h1>
+      <p class="lede">
+        Thank you — your idea just landed in Mimi's inbox. She'll reply by
+        email (usually within 1–2 days) with a quote and a timeline.
+      </p>
+      <div class="thanks-actions">
+        <a href="/shop/" class="btn btn-primary">Browse printables</a>
+        <a href="/blog/" class="btn btn-outline">Read the blog</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .thanks {
+    max-width: 560px;
+  }
+  :global(.thanks-duck) {
+    width: 160px;
+    margin: 0 auto 1.5rem;
+  }
+  .lede {
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .thanks-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+</style>

@@ -1,0 +1,179 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_NAME } from "../../config";
+
+const title = "Blog";
+const description =
+  "Activity ideas, printing tips, new printable releases, and the story behind Mimi Creates — a blog for parents of little learners.";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const dateFmt = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: `${SITE_NAME} Blog`,
+    description,
+    url: new URL("/blog/", Astro.site).href,
+    publisher: { "@id": new URL("/#organization", Astro.site).href },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.data.title,
+      description: post.data.description,
+      datePublished: post.data.pubDate.toISOString(),
+      url: new URL(`/blog/${post.id}/`, Astro.site).href,
+      author: { "@type": "Person", name: post.data.author },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: new URL("/", Astro.site).href },
+      { "@type": "ListItem", position: 2, name: "Blog", item: new URL("/blog/", Astro.site).href },
+    ],
+  },
+];
+---
+
+<BaseLayout {title} {description} {schema}>
+  <section class="section text-center blog-hero">
+    <div class="container">
+      <span class="kicker">Notes from Mimi's desk</span>
+      <h1>The Mimi Creates Blog</h1>
+      <p class="lede">
+        Activity ideas, printing tips, sneak peeks of new printables, and the
+        honest little journey of building an art shop.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Blog posts">
+    <div class="container">
+      <div class="post-grid">
+        {
+          posts.map((post) => (
+            <article class="card post-card">
+              <a href={`/blog/${post.id}/`} class="post-link">
+                <div class="post-decor" aria-hidden="true">
+                  <span class="post-decor-heart">♥</span>
+                </div>
+                <div class="post-body">
+                  <time
+                    datetime={post.data.pubDate.toISOString()}
+                    class="post-date"
+                  >
+                    {dateFmt.format(post.data.pubDate)}
+                  </time>
+                  <h2 class="post-title">{post.data.title}</h2>
+                  <p class="post-desc">{post.data.description}</p>
+                  {post.data.tags.length > 0 && (
+                    <ul class="tag-list">
+                      {post.data.tags.map((tag) => (
+                        <li>{tag}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <span class="read-more">Read the post →</span>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    padding-bottom: 1rem;
+  }
+  .lede {
+    max-width: 56ch;
+    margin-inline: auto;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.6rem;
+  }
+  .post-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .post-decor {
+    height: 10px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--teal) 0 24px,
+      var(--yellow) 24px 48px,
+      var(--coral) 48px 72px,
+      var(--green) 72px 96px
+    );
+    position: relative;
+  }
+  .post-decor-heart {
+    display: none;
+  }
+  .post-body {
+    padding: 1.4rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .post-date {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .post-title {
+    font-size: 1.25rem;
+    margin: 0.4rem 0 0.5rem;
+  }
+  .post-desc {
+    color: var(--muted);
+    font-size: 0.97rem;
+    flex: 1;
+  }
+  .tag-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0;
+    margin: 0 0 0.8rem;
+  }
+  .tag-list li {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal-dark);
+    background: var(--yellow-soft);
+    border-radius: 999px;
+    padding: 0.12rem 0.65rem;
+  }
+  .read-more {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .post-link:hover .read-more {
+    color: var(--teal-dark);
+  }
+</style>

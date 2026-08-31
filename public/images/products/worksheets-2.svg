@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Worksheets placeholder artwork">
+  <rect width="800" height="600" fill="#fbf7ea"/>
+  <rect x="24" y="24" width="752" height="552" rx="36" fill="#fffdf6" stroke="#2ea39b" stroke-width="4" stroke-dasharray="16 14"/>
+  <path transform="translate(90 90) scale(1.6)" d="M0-10 2.9-3.2 10-2.6 4.6 2.2 6.2 9.2 0 5.5-6.2 9.2-4.6 2.2-10-2.6-2.9-3.2Z" fill="#f7c844"/><path transform="translate(710 100) scale(1.2)" d="M0-10 2.9-3.2 10-2.6 4.6 2.2 6.2 9.2 0 5.5-6.2 9.2-4.6 2.2-10-2.6-2.9-3.2Z" fill="#f7c844"/><path transform="translate(96 500) scale(1.1)" d="M0-10 2.9-3.2 10-2.6 4.6 2.2 6.2 9.2 0 5.5-6.2 9.2-4.6 2.2-10-2.6-2.9-3.2Z" fill="#f7c844"/><path transform="translate(704 494) scale(1.5)" d="M0-10 2.9-3.2 10-2.6 4.6 2.2 6.2 9.2 0 5.5-6.2 9.2-4.6 2.2-10-2.6-2.9-3.2Z" fill="#f7c844"/>
+  <path transform="translate(716 180) scale(1.2)" d="M0 8C-3 4.5-9 1-9-3.5-9-7-6.4-9-3.9-9-2.3-9-.8-8 0-6.5.8-8 2.3-9 3.9-9 6.4-9 9-7 9-3.5 9 1 3 4.5 0 8Z" fill="#2ea39b"/><path transform="translate(84 420) scale(1)" d="M0 8C-3 4.5-9 1-9-3.5-9-7-6.4-9-3.9-9-2.3-9-.8-8 0-6.5.8-8 2.3-9 3.9-9 6.4-9 9-7 9-3.5 9 1 3 4.5 0 8Z" fill="#2ea39b"/>
+  <g stroke="#8a5a28" stroke-width="6" stroke-linejoin="round">
+       <rect x="260" y="130" width="280" height="340" rx="18" fill="#fff"/>
+     </g>
+     <text x="400" y="265" text-anchor="middle" font-family="'Baloo 2',cursive" font-size="96" font-weight="700" fill="#f0907e">123</text>
+     <circle cx="330" cy="330" r="18" fill="#2ea39b"/>
+     <circle cx="380" cy="330" r="18" fill="#f7c844"/>
+     <circle cx="430" cy="330" r="18" fill="#8cc5a5"/>
+     <circle cx="480" cy="330" r="18" fill="#d9efed" stroke="#2ea39b" stroke-width="3" stroke-dasharray="6 6"/>
+     <line x1="300" y1="390" x2="500" y2="390" stroke="#2ea39b" stroke-width="3" stroke-dasharray="10 8"/>
+     <line x1="300" y1="430" x2="500" y2="430" stroke="#2ea39b" stroke-width="3" stroke-dasharray="10 8"/>
+  <text x="400" y="536" text-anchor="middle" font-family="'Baloo 2','Comic Sans MS',cursive" font-size="40" font-weight="700" fill="#1b7370">Worksheets</text>
+</svg>

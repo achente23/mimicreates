@@ -1,0 +1,147 @@
+---
+import type { Product } from "../data/products";
+
+interface Props {
+  product: Product;
+  /** Use eager loading for above-the-fold cards */
+  eager?: boolean;
+}
+const { product, eager = false } = Astro.props;
+
+const priceLabel = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: product.currency,
+}).format(product.price);
+---
+
+<article
+  class="card product-card"
+  data-category={product.category}
+  id={product.slug}
+>
+  <div class="product-media">
+    <img
+      src={product.image}
+      alt={product.alt}
+      width="800"
+      height="600"
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+    />
+    {product.badge && <span class="badge">{product.badge}</span>}
+  </div>
+  <div class="product-body">
+    <span class="category-chip">{product.category}</span>
+    <h3 class="product-title">{product.title}</h3>
+    <p class="product-desc">{product.description}</p>
+    <div class="product-footer">
+      <span class="price">
+        {priceLabel}
+        <span class="price-note">digital download</span>
+      </span>
+      <a
+        class="btn btn-primary buy-btn"
+        href={product.etsyUrl}
+        target="_blank"
+        rel="noopener sponsored"
+        aria-label={`Buy ${product.title} on Etsy (opens in a new tab)`}
+      >
+        Buy Now
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+          <path
+            d="M7 17 17 7M9 7h8v8"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .product-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .product-media {
+    position: relative;
+    background: var(--cream);
+  }
+  .product-media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--coral);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(240, 144, 126, 0.5);
+  }
+  .product-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.25rem 1.35rem 1.45rem;
+  }
+  .category-chip {
+    align-self: flex-start;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: var(--teal-soft);
+    padding: 0.15rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 0.6rem;
+  }
+  .product-title {
+    font-size: 1.12rem;
+    margin-bottom: 0.4rem;
+  }
+  .product-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    flex: 1;
+  }
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: 0.9rem;
+  }
+  .price {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--teal-dark);
+    line-height: 1.1;
+  }
+  .price-note {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .buy-btn {
+    font-size: 0.98rem;
+    padding: 0.55rem 1.25rem;
+  }
+</style>

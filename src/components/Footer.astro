@@ -1,0 +1,156 @@
+---
+import Logo from "./Logo.astro";
+import DuckMascot from "./DuckMascot.astro";
+import { CONTACT_EMAIL, ETSY_SHOP_URL, SOCIALS } from "../config";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" aria-label="Mimi Creates — home" class="footer-logo">
+        <Logo />
+      </a>
+      <p>
+        Printable activities, busy books, worksheets &amp; coloring books —
+        made with <span class="heart" aria-label="love">♥</span> for little
+        learners.
+      </p>
+      <DuckMascot class="footer-duck" />
+    </div>
+
+    <nav class="footer-col" aria-label="Footer navigation">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="/shop/">Shop printables</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/custom-art/">Custom art request</a></li>
+        <li><a href="/about/">About Mimi</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h3>Get in touch</h3>
+      <ul>
+        <li>
+          <a href={ETSY_SHOP_URL} target="_blank" rel="noopener">
+            Visit our Etsy shop ↗
+          </a>
+        </li>
+        <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+        {
+          SOCIALS.instagram && (
+            <li>
+              <a href={SOCIALS.instagram} target="_blank" rel="noopener">
+                Instagram ↗
+              </a>
+            </li>
+          )
+        }
+        {
+          SOCIALS.tiktok && (
+            <li>
+              <a href={SOCIALS.tiktok} target="_blank" rel="noopener">
+                TikTok ↗
+              </a>
+            </li>
+          )
+        }
+        {
+          SOCIALS.pinterest && (
+            <li>
+              <a href={SOCIALS.pinterest} target="_blank" rel="noopener">
+                Pinterest ↗
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>
+        © {year} Mimi Creates · Learn · Play · Create ·
+        <a href="/rss.xml">RSS</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 4rem;
+    background: var(--teal-dark);
+    color: #eaf6f4;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2.5rem;
+    padding-block: 3rem;
+  }
+  .footer-logo {
+    font-size: 1.8rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    --teal: #7ed6cd;
+    --teal-dark: #fff;
+  }
+  .footer-brand p {
+    max-width: 34ch;
+    color: #c9e6e2;
+  }
+  .heart {
+    color: var(--coral);
+  }
+  :global(.footer-duck) {
+    width: 84px;
+    margin-top: 0.6rem;
+    opacity: 0.95;
+  }
+  .footer-col h3 {
+    color: var(--yellow);
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+  }
+  .footer-col a {
+    color: #eaf6f4;
+    text-decoration: none;
+  }
+  .footer-col a:hover {
+    color: var(--yellow);
+    text-decoration: underline;
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-block: 1rem;
+    font-size: 0.9rem;
+    color: #b5dbd6;
+  }
+  .footer-bottom p {
+    margin: 0;
+  }
+  .footer-bottom a {
+    color: inherit;
+  }
+
+  @media (max-width: 780px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

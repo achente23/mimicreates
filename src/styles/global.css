@@ -1,0 +1,280 @@
+/* ──────────────────────────────────────────────
+   Mimi Creates — global styles & brand tokens
+   Palette sampled from the official branding:
+   cream paper, two teals, sunny yellow, soft
+   green leaves, duckling yellow, coral accents.
+   ────────────────────────────────────────────── */
+
+:root {
+  /* brand colors */
+  --cream: #fbf7ea;
+  --cream-deep: #f4edd8;
+  --paper: #fffdf6;
+  --teal: #2ea39b;
+  --teal-soft: #d9efed;
+  --teal-dark: #1b7370;
+  --teal-ink: #14544f;
+  --yellow: #f7c844;
+  --yellow-soft: #fdeec2;
+  --green: #8cc5a5;
+  --green-soft: #e3f1e8;
+  --coral: #f0907e;
+  --coral-soft: #fde4dd;
+  --duck: #f9e08e;
+
+  /* text */
+  --ink: #27423f;
+  --muted: #5f7a76;
+
+  /* shape & elevation */
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --shadow-card: 0 6px 24px rgba(27, 115, 112, 0.1);
+  --shadow-card-hover: 0 12px 32px rgba(27, 115, 112, 0.18);
+
+  /* type */
+  --font-display: "Baloo 2", "Comic Sans MS", cursive, sans-serif;
+  --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+
+  --max-width: 1120px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--teal-dark);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--teal-dark);
+}
+
+a:hover {
+  color: var(--teal);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.section {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.section-alt {
+  background: var(--paper);
+  border-block: 2px dashed var(--teal-soft);
+}
+
+/* ── kicker / section labels ─────────────────── */
+.kicker {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-soft);
+  border-radius: 999px;
+  padding: 0.25rem 0.95rem;
+  margin-bottom: 0.9rem;
+}
+
+/* ── buttons ─────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-radius: 999px;
+  padding: 0.72rem 1.6rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(46, 163, 155, 0.4);
+}
+
+.btn-primary:hover {
+  background: var(--teal-dark);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: var(--yellow);
+  color: var(--teal-ink);
+  box-shadow: 0 4px 14px rgba(247, 200, 68, 0.45);
+}
+
+.btn-secondary:hover {
+  background: #f5bd1f;
+  color: var(--teal-ink);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--teal-dark);
+  border-color: var(--teal);
+}
+
+.btn-outline:hover {
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+}
+
+/* ── cards ───────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* dashed "sticker" border used across the brand */
+.sticker-border {
+  border: 2.5px dashed var(--teal);
+  border-radius: var(--radius-lg);
+}
+
+/* ── forms ───────────────────────────────────── */
+label {
+  display: block;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--teal-dark);
+  margin-bottom: 0.35rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--cream-deep);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.9rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(46, 163, 155, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* ── helpers ─────────────────────────────────── */
+.text-center {
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--teal-ink);
+}
+
+/* reduced motion: keep it calm */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .btn,
+  .card {
+    transition: none;
+  }
+}

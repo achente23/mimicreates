@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Coloring Pages placeholder artwork">
+  <rect width="800" height="600" fill="#fbf7ea"/>
+  <rect x="24" y="24" width="752" height="552" rx="36" fill="#fffdf6" stroke="#2ea39b" stroke-width="4" stroke-dasharray="16 14"/>
+  <path transform="translate(90 90) scale(1.6)" d="M0-10 2.9-3.2 10-2.6 4.6 2.2 6.2 9.2 0 5.5-6.2 9.2-4.6 2.2-10-2.6-2.9-3.2Z" fill="#f7c844"/><path transform="translate(710 100) scale(1.2)" d="M0-10 2.9-3.2 10-2.6 4.6 2.2 6.2 9.2 0 5.5-6.2 9.2-4.6 2.2-10-2.6-2.9-3.2Z" fill="#f7c844"/><path transform="translate(96 500) scale(1.1)" d="M0-10 2.9-3.2 10-2.6 4.6 2.2 6.2 9.2 0 5.5-6.2 9.2-4.6 2.2-10-2.6-2.9-3.2Z" fill="#f7c844"/><path transform="translate(704 494) scale(1.5)" d="M0-10 2.9-3.2 10-2.6 4.6 2.2 6.2 9.2 0 5.5-6.2 9.2-4.6 2.2-10-2.6-2.9-3.2Z" fill="#f7c844"/>
+  <path transform="translate(716 180) scale(1.2)" d="M0 8C-3 4.5-9 1-9-3.5-9-7-6.4-9-3.9-9-2.3-9-.8-8 0-6.5.8-8 2.3-9 3.9-9 6.4-9 9-7 9-3.5 9 1 3 4.5 0 8Z" fill="#8cc5a5"/><path transform="translate(84 420) scale(1)" d="M0 8C-3 4.5-9 1-9-3.5-9-7-6.4-9-3.9-9-2.3-9-.8-8 0-6.5.8-8 2.3-9 3.9-9 6.4-9 9-7 9-3.5 9 1 3 4.5 0 8Z" fill="#8cc5a5"/>
+  <g stroke="#8a5a28" stroke-width="6" stroke-linejoin="round">
+       <rect x="250" y="130" width="300" height="340" rx="18" fill="#fff"/>
+     </g>
+     <g fill="none" stroke="#27423f" stroke-width="6" stroke-linecap="round">
+       <circle cx="330" cy="230" r="34"/>
+       <path d="M330 180 v-16 M330 296 v-16 M280 230 h-16 M396 230 h-16 M295 195 l-11 -11 M376 195 l11 -11 M295 265 l-11 11 M376 265 l11 11"/>
+     </g>
+     <path d="M420 340 q22 -50 60 -22 q38 -28 60 22 q-28 44 -60 58 q-32 -14 -60 -58Z" transform="translate(-30 -40) scale(0.9)" fill="none" stroke="#27423f" stroke-width="6" stroke-linejoin="round"/>
+     <g fill="none" stroke="#27423f" stroke-width="6" stroke-linecap="round">
+       <path d="M300 400 q30 -36 60 0 q30 36 60 0 q30 -36 60 0" />
+     </g>
+     <g stroke="#8a5a28" stroke-width="5" stroke-linejoin="round">
+       <rect x="330" y="430" width="24" height="8" rx="4" fill="#8cc5a5"/>
+       <rect x="380" y="430" width="24" height="8" rx="4" fill="#f0907e"/>
+       <rect x="430" y="430" width="24" height="8" rx="4" fill="#f7c844"/>
+     </g>
+  <text x="400" y="536" text-anchor="middle" font-family="'Baloo 2','Comic Sans MS',cursive" font-size="40" font-weight="700" fill="#1b7370">Coloring Pages</text>
+</svg>
